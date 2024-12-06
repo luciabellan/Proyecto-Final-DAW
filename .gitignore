@@ -29,6 +29,7 @@ frontend/.DS_Store
 # Logs
 frontend/npm-debug.log*
 
+
 # VSCode
 .vscode/
 
@@ -37,3 +38,4 @@ node_modules/
 
 # Otros
 scripts bbdd/
+
