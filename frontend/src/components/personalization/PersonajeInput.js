@@ -1,6 +1,5 @@
 // PersonajeInput.js
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import './PersonajeInput.css';
 
 const PersonajeInput = ({ index, onPersonajeChange, personajesPredefinidos }) => {
@@ -13,7 +12,7 @@ const PersonajeInput = ({ index, onPersonajeChange, personajesPredefinidos }) =>
   // Cuando cambian los datos, notificamos al padre
   useEffect(() => {
     onPersonajeChange(index, personajeData);
-  }, [personajeData]);
+  }, [index, personajeData, onPersonajeChange]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

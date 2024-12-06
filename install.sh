@@ -40,3 +40,5 @@ mv -fv build/* ../backend/src/main/resources/static
 
 cd ../backend
 mvn clean package
+
+

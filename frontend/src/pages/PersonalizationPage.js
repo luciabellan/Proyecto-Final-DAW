@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+//import { useLocation } from "react-router-dom";
 import CuentoSelector from "../components/personalization/CuentoSelector";
 import NumeroPersonajes from "../components/personalization/NumeroPersonajes";
 import PersonajeInput from "../components/personalization/PersonajeInput";
@@ -10,8 +10,8 @@ const apiUrl = process.env.REACT_APP_API_URL;
 
 
 const PersonalizationPage = () => {
-  const location = useLocation();
-  const { userId, userName } = location.state || {};
+ // const location = useLocation();
+  //const { userId, userName } = location.state || {};
   const [personajesPredefinidos, setPersonajesPredefinidos] = useState([]);
   const [userData, setUserData] = useState(null);
   const [formData, setFormData] = useState({

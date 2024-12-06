@@ -36,9 +36,7 @@ const CuentoSelector = ({ formData, onChange }) => {
 
   const handleCuentoChange = (e) => {
     const selectedCuentoId = e.target.value;
-    const selectedCuento = cuentosDisponibles.find(
-      cuento => cuento.id === parseInt(selectedCuentoId)
-    );
+    
     
     onChange({ 
       cuento_id: selectedCuentoId

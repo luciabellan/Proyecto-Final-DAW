@@ -15,9 +15,9 @@ const ResumenPedido = ({ userData, formData, personajesPredefinidos }) => {
     }
 
     // Cambiamos personajes por personajesCreados
-    const personajesCompletos = formData.personajesCreados?.every(
+    /*  formData.personajesCreados?.every(
         p => p.nombre && p.tipo && p.personaje_id
-    );
+    ); */
 
 
     const handleConfirm = async () => {

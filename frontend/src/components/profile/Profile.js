@@ -14,10 +14,10 @@ const Profile = () => {
   const apiUrl = process.env.REACT_APP_API_URL;
 
   const [librosPersonalizados, setLibrosPersonalizados] = useState([]);
-  const [loading, setLoading] = useState(true); // Añadir estado de loading
+  const [, setLoading] = useState(true); // Añadir estado de loading
   const [userData, setUserData] = useState({}); // Guardará los datos del usuario
   const [isEditing, setIsEditing] = useState(false); // Estado para mostrar el formulario de edición
-  const [formData, setFormData] = useState({}); // Datos del formulario de edición
+  //const [formData, setFormData] = useState({}); // Datos del formulario de edición
  
   const navigate = useNavigate();
 
