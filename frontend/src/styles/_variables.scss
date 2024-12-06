@@ -1,0 +1,54 @@
+// Colores
+$color-primary: #A8D8EA;    // Azul pastel
+$color-secondary: #FFB9B9;  // Rosa pastel
+$color-success: #D5ECC2;    // Verde menta
+$color-accent: #E2D1F9;     // Lila pastel
+$color-warm: #FFD4B8;       // Melocotón
+$color-background: #FFF8F0; // Blanco crema
+$color-container: #F7F7F7;  // Gris suave
+$color-text: #5A5A5A;      // Gris oscuro
+
+// Tipografía
+$font-size-base: 16px;
+
+h1 {
+  font-family: 'Comic Sans MS';
+  font-size: 32px;
+  font-weight: bold;
+  color: $color-primary;
+}
+
+h2 {
+  font-family: 'Comic Sans MS';
+  font-size: 28px;
+  font-weight: bold;
+  color: $color-secondary;
+}
+
+h3 {
+  font-family: 'Comic Sans MS';
+  font-size: 24px;
+  font-weight: bold;
+  color: $color-accent;
+}
+
+h4 {
+  font-family: 'Comic Sans MS';
+  font-size: 20px;
+  font-weight: bold;
+  color: $color-warm;
+}
+
+h5 {
+  font-family: 'Comic Sans MS';
+  font-size: 18px;
+  font-weight: bold;
+  color: $color-success;
+}
+
+h6 {
+  font-family: 'Comic Sans MS';
+  font-size: 16px;
+  font-style: italic;
+  color: $color-text;
+}

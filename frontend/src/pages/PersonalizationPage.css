@@ -1,0 +1,237 @@
+/* Variables CSS para facilitar cambios */
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --background-color: #f5f5f5;
+    --white: #ffffff;
+    --error-color: #dc3545;
+    --success-color: #28a745;
+    --text-color: #333333;
+    --border-color: #dddddd;
+    
+    /* Espaciado */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    
+    /* Bordes */
+    --border-radius: 8px;
+    
+    /* Sombras */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilos base */
+  .personalization-page {
+    min-height: 100vh;
+    background-color: var(--background-color);
+    padding: var(--spacing-xl) var(--spacing-md);
+  }
+  
+  .personalization-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 var(--spacing-md);
+  }
+  
+  .personalization-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-color);
+  }
+  
+  .personalization-sections {
+    display: grid;
+    gap: var(--spacing-xl);
+    grid-template-columns: 1fr;
+  }
+  
+  .personalization-section {
+    background-color: var(--white);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  /* Formularios responsivos */
+  .form-group {
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 500;
+    color: var(--text-color);
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+  }
+  
+  /* Botones responsivos */
+  .button-group {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+  }
+  
+  .personalization-button {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--border-radius);
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+  }
+  
+  /* Breakpoints - Mobile First */
+  /* Móviles pequeños */
+  @media (max-width: 320px) {
+    .personalization-container {
+      padding: 0 var(--spacing-sm);
+    }
+  
+    .personalization-title {
+      font-size: 1.5rem;
+    }
+  
+    .personalization-section {
+      padding: var(--spacing-sm);
+    }
+    
+    .personalization-button {
+      width: 100%;
+    }
+  }
+  
+  /* Móviles */
+  @media (min-width: 321px) and (max-width: 480px) {
+    .personalization-title {
+      font-size: 1.75rem;
+    }
+  
+    .personalization-section {
+      padding: var(--spacing-md);
+    }
+  }
+  
+  /* Tablets pequeñas */
+  @media (min-width: 481px) and (max-width: 768px) {
+    .personalization-sections {
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+  
+    .form-row {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* Tablets */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .personalization-sections {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-lg);
+    }
+  }
+  
+  /* Escritorio */
+  @media (min-width: 1025px) {
+    .personalization-sections {
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: var(--spacing-xl);
+    }
+  
+    .personalization-section {
+      padding: var(--spacing-xl);
+    }
+  }
+  
+  /* Escritorio grande */
+  @media (min-width: 1201px) {
+    .personalization-container {
+      max-width: 1400px;
+    }
+  }
+  
+  /* Utilidades responsivas */
+  .hide-mobile {
+    display: none;
+  }
+  
+  @media (min-width: 768px) {
+    .hide-mobile {
+      display: block;
+    }
+    
+    .hide-desktop {
+      display: none;
+    }
+  }
+  
+  /* Estados y animaciones */
+  .personalization-section {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .personalization-section:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  /* Mensajes de estado */
+  .message {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-md);
+    width: 100%;
+  }
+  
+  .message.error {
+    background-color: #ffe6e6;
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
+  }
+  
+  .message.success {
+    background-color: #d4edda;
+    color: var(--success-color);
+    border: 1px solid var(--success-color);
+  }
+  
+  /* Estilos de accesibilidad */
+  @media (prefers-reduced-motion: reduce) {
+    .personalization-section,
+    .personalization-button {
+      transition: none;
+    }
+  }
+  
+  /* Soporte para modo oscuro */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background-color: #1a1a1a;
+      --text-color: #ffffff;
+      --border-color: #404040;
+      --white: #2d2d2d;
+    }
+  }

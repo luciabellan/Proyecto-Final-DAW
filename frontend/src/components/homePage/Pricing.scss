@@ -1,0 +1,97 @@
+@import '../../styles/variables';
+@import '../../styles/components';
+
+.pricing-section {
+  background-color: $color-container;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.pricing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1000px;
+  width: 100%;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba($color-text, 0.1);
+  overflow: hidden;
+}
+
+.pricing-image {
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+}
+
+.pricing-details {
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  h2 {
+    // Hereda los estilos base de h2 de _variables.scss
+    color: $color-primary;
+    margin-bottom: 15px;
+  }
+  
+  p {
+    font-size: $font-size-base; // Nuestro tamaño base
+    color: $color-text;
+    margin-top: 10px;
+  }
+  
+  h3 {
+    // Hereda los estilos base de h3 de _variables.scss
+    color: $color-primary;
+    margin: 15px 0;
+  }
+}
+
+.customize-btn {
+  @extend .btn;
+  @extend .btn-primary;
+  margin-top: 20px;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba($color-text, 0.1);
+  }
+}
+
+// Media query para pantallas grandes
+@media (min-width: 768px) {
+  .pricing-container {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .pricing-image {
+    img {
+      padding: 10px;
+      width: 300px;
+      border-radius: 8px 0 0 8px;
+    }
+  }
+
+  .pricing-details {
+    text-align: center;
+    padding: 40px;
+    
+    h2, h3, p {
+      text-align: center;
+    }
+  }
+
+  .customize-btn {
+    align-self: center;
+    margin-top: 0;
+  }
+}

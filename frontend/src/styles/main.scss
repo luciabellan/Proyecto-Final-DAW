@@ -1,0 +1,24 @@
+@import 'variables';
+@import 'components';
+
+// Estilos globales básicos
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  color: $color-text;
+  background-color: $color-background;
+  line-height: 1.6;
+}
+
+// Container general
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}

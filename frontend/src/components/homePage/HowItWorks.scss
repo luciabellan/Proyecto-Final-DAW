@@ -1,0 +1,110 @@
+@import '../../styles/variables';
+@import '../../styles/components';
+
+.how-it-works {
+  padding: 50px 20px;
+  background-color: $color-background;
+  text-align: center;
+
+  h2 {
+    // Heredará los estilos base de h2 de _variables.scss
+    margin-bottom: 30px;
+  }
+}
+
+.how-it-works-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.how-it-works-block {
+  flex: 1;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba($color-text, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+  }
+
+  h3 {
+    // Heredará los estilos base de h3 de _variables.scss
+    margin-bottom: 15px;
+    color: $color-primary;
+  }
+
+  p {
+    font-size: $font-size-base; // Nuestro tamaño base
+    color: $color-text;
+    margin-top: 10px;
+    line-height: 1.6;
+  }
+}
+
+.carousel-indicators {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .how-it-works-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 20px; // Espacio para los indicadores
+    
+    &::-webkit-scrollbar {
+      display: none; // Oculta la barra de desplazamiento en Chrome
+    }
+  }
+
+  .how-it-works-block {
+    min-width: 100%;
+    flex-shrink: 0;
+    scroll-snap-align: center;
+    margin-right: 0;
+  }
+
+  .carousel-indicators {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+    button {
+      background-color: lighten($color-text, 40%);
+      border: none;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin: 0 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &.active {
+        background-color: $color-primary;
+      }
+
+      &:hover {
+        background-color: $color-secondary;
+      }
+    }
+  }
+}

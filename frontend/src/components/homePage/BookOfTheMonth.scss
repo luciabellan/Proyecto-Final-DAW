@@ -1,0 +1,110 @@
+@import '../../styles/variables';
+@import '../../styles/components';
+
+.book-of-the-month {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: $color-background; // Nuestro color de fondo
+
+  h2 {
+    // Ya heredará los estilos base de h2 definidos en _variables.scss
+    margin-bottom: 30px;
+  }
+}
+
+.book-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: $color-container;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba($color-text, 0.1);
+}
+
+.book-image {
+  img {
+    width: 400px;
+    height: auto;
+    border-radius: 8px;
+  }
+}
+
+.book-description {
+  max-width: 700px;
+  text-align: left;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h3 {
+    // Ya heredará los estilos base de h3
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: $font-size-base; // Nuestro tamaño base
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 20px;
+  }
+
+  li {
+    margin-bottom: 10px;
+    font-size: $font-size-base; // Nuestro tamaño base
+  }
+}
+
+.subscribe-btn {
+  @extend .btn; // Hereda los estilos base de botón
+  @extend .btn-primary; // Usa nuestro estilo de botón primario
+  width: auto;
+  
+  &:hover {
+    background-color: darken($color-primary, 10%);
+  }
+}
+
+// Media queries
+@media (max-width: 1024px) {
+  .book-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .book-image {
+    img {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  }
+
+  .book-description {
+    padding-left: 0;
+    text-align: center;
+    justify-content: center;
+    height: 100%;
+
+    ul {
+      padding-left: 0;
+      list-style-type: none;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+  }
+
+  .subscribe-btn {
+    margin-top: 20px;
+    width: 100%;
+  }
+}

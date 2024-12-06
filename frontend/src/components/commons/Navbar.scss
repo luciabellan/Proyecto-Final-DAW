@@ -1,0 +1,85 @@
+// Navbar.scss
+@import '../../styles/variables';
+@import '../../styles/components';
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba($color-text, 0.1);
+
+  .logo-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+
+    .logo-image {
+      max-width: 300px;
+      height: auto;
+      
+      @media (max-width: 768px) {
+        max-width: 200px;
+      }
+    }
+  }
+
+  .menu-icon {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: $color-text;
+    
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
+    @media (max-width: 768px) {
+      display: none; // Oculto por defecto en móvil
+      
+      &.show {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba($color-text, 0.1);
+        z-index: 1000;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: $color-text;
+      font-size: 16px;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $color-primary;
+      }
+    }
+  }
+
+  // Media queries para tablet y desktop
+  @media (min-width: 769px) {
+    .logo-container {
+      flex: 0 0 auto; // No ocupa todo el espacio disponible
+      margin-right: 40px;
+    }
+
+    .nav-links {
+      flex: 1;
+      justify-content: flex-end;
+    }
+  }
+}

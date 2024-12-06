@@ -1,0 +1,45 @@
+/* Contenedor principal para la personalización */
+.personalization-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Sección de la imagen (2/3 del ancho) */
+  .image-section {
+    flex: 2; /* Ocupa 2/3 del espacio */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .image-section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  /* Sección del formulario (1/3 del ancho) */
+  .form-section {
+    flex: 1; /* Ocupa 1/3 del espacio */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilos para móvil */
+  @media (max-width: 768px) {
+    .personalization-container {
+      flex-direction: column; /* Apila las secciones una debajo de la otra */
+    }
+  
+    .image-section,
+    .form-section {
+      flex: none; /* Quitar el flex-grow */
+      width: 100%; /* Ocupan todo el ancho */
+    }
+  }
+  
