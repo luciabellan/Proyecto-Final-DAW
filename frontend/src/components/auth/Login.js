@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Login.scss';
-const apiUrl = process.env.REACT_APP_API_URL;
+
 
 
 
 const Login = () => {
+  const apiUrl = process.env.REACT_APP_API_URL;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [,setError] = useState('');

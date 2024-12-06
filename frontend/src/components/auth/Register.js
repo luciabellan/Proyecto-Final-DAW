@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Register.css'; // Asegúrate de tener estilos para el formulario
-const apiUrl = process.env.REACT_APP_API_URL;
+
 
 
 const Register = () => {
+  const apiUrl = process.env.REACT_APP_API_URL;
   const [nombre, setNombre] = useState('');
   const [apellidos, setApellidos] = useState('');
   const [email, setEmail] = useState('');

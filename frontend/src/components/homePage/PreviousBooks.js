@@ -3,10 +3,11 @@ import { Carousel } from 'react-bootstrap';
 import axios from 'axios';
 import './PreviousBooks.scss';
 
+
 const apiUrl = process.env.REACT_APP_API_URL;
 
-
 const PreviousBooks = () => {
+  
   const [cuentos, setCuentos] = useState([]);
 
   useEffect(() => {
