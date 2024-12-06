@@ -16,8 +16,8 @@
     }
   
     &-primary {
-      background-color: $color-secondary;
-      color:$color-secondary;
+      background-color: $color-primary;
+      color:$color-text;
       &:hover {
         background-color: darken($color-primary, 5%);
       }
