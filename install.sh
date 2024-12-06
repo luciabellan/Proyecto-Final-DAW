@@ -35,7 +35,7 @@ cd frontend
 npm install
 npm run build 
 
-mv build/* ../backend/src/main/resources/static
+mv -rfv build/* ../backend/src/main/resources/static
 
 cd ../backend
 mvn clean package
