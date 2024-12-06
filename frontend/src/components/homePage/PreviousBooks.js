@@ -4,10 +4,10 @@ import axios from 'axios';
 import './PreviousBooks.scss';
 
 
-const apiUrl = process.env.REACT_APP_API_URL;
 
 const PreviousBooks = () => {
   
+const apiUrl = process.env.REACT_APP_API_URL;
   const [cuentos, setCuentos] = useState([]);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const PreviousBooks = () => {
     };
 
     fetchCuentos();
-  }, []);
+  }, [apiUrl]);
 
   return (
     <div className="previous-books-container">
