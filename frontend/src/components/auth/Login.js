@@ -58,7 +58,7 @@ const Login = () => {
         placeholder="Contraseña"
         required
       />
-      <button type="submit">Login</button>
+      <button className='customize-btn' type="submit">Login</button>
     </form>
     <div className="register-link">
             ¿No tienes cuenta? <a href="/register">Regístrate</a>
