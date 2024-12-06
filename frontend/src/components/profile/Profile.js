@@ -7,7 +7,12 @@ import personalizarIcon from "../../assets/botones/boton_personalizar.svg";
 import historialIcon from "../../assets/botones/boton_historial_pedidos.svg";
 import EditForm from "./EditForm";
 
+
+
+
 const Profile = () => {
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   const [librosPersonalizados, setLibrosPersonalizados] = useState([]);
   const [loading, setLoading] = useState(true); // Añadir estado de loading
   const [userData, setUserData] = useState({}); // Guardará los datos del usuario
@@ -40,7 +45,7 @@ const Profile = () => {
 
       const userId = obtenerIdUsuarioActual();
       // Eliminar el perfil del usuario actual
-      await axios.delete(`http://localhost:8080/api/eliminar/${userId}`, {
+      await axios.delete(`${apiUrl}/api/eliminar/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

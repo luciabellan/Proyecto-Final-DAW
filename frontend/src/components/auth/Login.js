@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Login.scss';
+const apiUrl = process.env.REACT_APP_API_URL;
 
 
 
@@ -18,7 +19,7 @@ const Login = () => {
             return;
         }
 
-        const response = await axios.post('http://localhost:8080/api/login', { email, password });
+        const response = await axios.post( `${apiUrl}/api/login`, { email, password });
         console.log('Login successful:', response.data);
         localStorage.setItem('token', response.data); 
         history('/profile');

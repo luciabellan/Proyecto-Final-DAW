@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
 import './PersonalizationForm.css';
 import MonthStorySelector from '../components/personalization/MonthStorySelector';
+const apiUrl = process.env.REACT_APP_API_URL;
 
 // Actualizar el esquema de validación para incluir el mes y precio
 const schema = yup.object().shape({
@@ -57,7 +58,9 @@ function PersonalizationForm() {
         children: data.children.slice(0, data.numberOfChildren) // Solo enviar los niños seleccionados
       };
 
-      const response = await axios.post('http://localhost:8080/api/personalizar-libro', formData, {
+      
+
+      const response = await axios.post(`${apiUrl}/api/personalizar-libro`, formData, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Register.css'; // Asegúrate de tener estilos para el formulario
+const apiUrl = process.env.REACT_APP_API_URL;
+
 
 const Register = () => {
   const [nombre, setNombre] = useState('');
@@ -18,7 +20,7 @@ const Register = () => {
 
     try {
       // Hacer la solicitud de registro al backend
-      await axios.post('http://localhost:8080/api/usuarios', {
+      await axios.post( `${apiUrl}/api/usuarios`, {
         nombre,
         apellidos,
         email,

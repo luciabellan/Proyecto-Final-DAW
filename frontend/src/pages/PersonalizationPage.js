@@ -5,6 +5,8 @@ import NumeroPersonajes from "../components/personalization/NumeroPersonajes";
 import PersonajeInput from "../components/personalization/PersonajeInput";
 import axios from "axios";
 import ResumenPedido from "../components/personalization/ResumenPedido";
+const apiUrl = process.env.REACT_APP_API_URL;
+
 
 
 const PersonalizationPage = () => {
@@ -39,7 +41,7 @@ const PersonalizationPage = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          "http://localhost:8080/api/personajes-predefinidos",
+          `${apiUrl}/api/personajes-predefinidos`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -61,7 +63,7 @@ const PersonalizationPage = () => {
     const fetchUserData = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:8080/api/perfil', {
+        const response = await axios.get( `${apiUrl}/api/perfil`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

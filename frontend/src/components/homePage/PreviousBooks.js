@@ -3,13 +3,16 @@ import { Carousel } from 'react-bootstrap';
 import axios from 'axios';
 import './PreviousBooks.scss';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
+
 const PreviousBooks = () => {
   const [cuentos, setCuentos] = useState([]);
 
   useEffect(() => {
     const fetchCuentos = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/cuentos-disponibles');
+        const response = await axios.get( `${apiUrl}/api/cuentos-disponibles`);
         setCuentos(response.data);
       } catch (error) {
         console.error('Error al cargar los cuentos:', error);

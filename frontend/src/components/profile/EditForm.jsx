@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
+
 const EditForm = ({ userData, onSave, onCancel }) => {
   const [formData, setFormData] = useState(userData || {});
 
@@ -14,7 +17,7 @@ const EditForm = ({ userData, onSave, onCancel }) => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        `http://localhost:8080/api/${userData.id}`,
+        `${apiUrl}/api/${userData.id}`,
         formData,
         {
           headers: { Authorization: `Bearer ${token}` },

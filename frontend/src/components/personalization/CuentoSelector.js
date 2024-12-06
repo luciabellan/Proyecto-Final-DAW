@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './CuentoSelector.css';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
+
 const CuentoSelector = ({ formData, onChange }) => {
   const [cuentosDisponibles, setCuentosDisponibles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,7 +15,7 @@ const CuentoSelector = ({ formData, onChange }) => {
     const fetchCuentos = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:8080/api/cuentos-disponibles', {
+        const response = await axios.get( `${apiUrl}/api/cuentos-disponibles`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

@@ -4,6 +4,9 @@ import './ResumenPedido.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
+
 const ResumenPedido = ({ userData, formData, personajesPredefinidos }) => {
     const navigate = useNavigate(); //redirigir después del éxito
     
@@ -32,7 +35,7 @@ const ResumenPedido = ({ userData, formData, personajesPredefinidos }) => {
 
             console.log('Enviando pedido:', pedidoData); // Para debug
             const response = await axios.post(
-                'http://localhost:8080/api/libros-personalizados',
+                 `${apiUrl}/api/libros-personalizados`,
                 pedidoData,
                 {
                     headers: {
