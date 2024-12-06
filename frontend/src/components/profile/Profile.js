@@ -96,7 +96,7 @@ const Profile = () => {
         const token = localStorage.getItem("token");
         // Hacer solicitud para obtener datos del perfil del usuario
         const userResponse = await axios.get(
-          "http://localhost:8080/api/perfil",
+          `${apiUrl}/api/perfil`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -107,7 +107,7 @@ const Profile = () => {
       
         // Hacer solicitud para obtener los libros personalizados del usuario
         const librosResponse = await axios.get(
-          "http://localhost:8080/api/libros-personalizados",
+          `${apiUrl}/api/libros-personalizados`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -132,7 +132,7 @@ const Profile = () => {
     };
 
     fetchProfile();
-  }, []);
+  }, [apiUrl]);
 
   const handleSave = (updatedData) => {
     setUserData(updatedData); // Actualiza los datos en el estado del usuario
