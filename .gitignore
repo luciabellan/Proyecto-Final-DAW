@@ -1,0 +1,39 @@
+# Carpeta target (contiene archivos compilados)
+backend/target/
+
+# Archivos de configuración de Maven
+backend/.mvn
+backend/mvnw
+backend/mvnw.cmd
+
+# Archivos de configuración del IDE
+backend/.settings/
+backend/.classpath
+backend/.project
+
+# Archivo de propiedades con datos sensibles
+backend/src/main/resources/application.properties
+
+# Dependencias de Node
+frontend/node_modules/
+
+# Variables de entorno
+frontend/.env
+
+# Carpeta de compilación
+frontend/build/
+
+# Archivos del sistema
+frontend/.DS_Store
+
+# Logs
+frontend/npm-debug.log*
+
+# VSCode
+.vscode/
+
+# Node
+node_modules/
+
+# Otros
+scripts bbdd/
