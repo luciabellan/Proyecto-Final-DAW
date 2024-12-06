@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+@CrossOrigin(origins = "https://proyecto-final-daw-production-5980.up.railway.app", allowCredentials = "true")
 public class UsuarioControlador {
 
     @Autowired

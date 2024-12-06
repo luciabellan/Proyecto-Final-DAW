@@ -1,7 +1,7 @@
 package com.carlosiii.backend.dto;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://proyecto-final-daw-production-5980.up.railway.app")
 public class LoginRequest {
     private String email;
     private String password;

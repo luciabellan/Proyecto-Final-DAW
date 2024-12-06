@@ -7,13 +7,18 @@ import './PreviousBooks.scss';
 
 const PreviousBooks = () => {
   
-const apiUrl = process.env.REACT_APP_API_URL;
+  const apiUrl = process.env.REACT_APP_API_URL?.replace('http://', 'https://') || 'https://proyecto-final-daw-production-5980.up.railway.app';
   const [cuentos, setCuentos] = useState([]);
 
   useEffect(() => {
     const fetchCuentos = async () => {
       try {
-        const response = await axios.get( `${apiUrl}/api/cuentos-disponibles`);
+        const response = await axios.get( `${apiUrl}/api/cuentos-disponibles`, {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+        });
         setCuentos(response.data);
       } catch (error) {
         console.error('Error al cargar los cuentos:', error);
