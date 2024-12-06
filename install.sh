@@ -31,8 +31,11 @@ nvm use 20
 echo "Node.js version: $(node -v)"
 echo "npm version: $(npm -v)"
 
-# Instalar sass globalmente
-npm install -g sass
+cd frontend
+npm install
+npm run build 
 
-# Verificar la versión de sass
-echo "Sass version: $(sass --version)"
+mv build/* ../backend/src/main/resources/static
+
+cd ../backend
+mvn clean package
