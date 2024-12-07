@@ -44,8 +44,9 @@
   
   p {
     font-size: $font-size-base; // Nuestro tamaño base
-    color: $color-text;
+    color: $color-secondary;
     margin-top: 10px;
+    font-weight: bold;
   }
   
   h3 {

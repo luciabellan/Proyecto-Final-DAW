@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Testimonials.scss';
 
 function Testimonials() {
@@ -18,6 +18,13 @@ function Testimonials() {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+    }, 5000); // Cambia cada 5 segundos
+    return () => clearInterval(interval); // Limpia el intervalo cuando el componente se desmonte
+  }, [testimonials.length]);
 
   const nextTestimonial = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
