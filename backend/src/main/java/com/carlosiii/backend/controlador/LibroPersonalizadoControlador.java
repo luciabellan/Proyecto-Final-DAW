@@ -17,13 +17,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RestController
-@RequestMapping("/api")
+@RestController //REST
+@RequestMapping("/api") //ruta base
 public class LibroPersonalizadoControlador {
 
+    //Servicio inyectado para operaciones con libros
     @Autowired
     private LibroPersonalizadoServicio libroPersonalizadoServicio;
 
+    //Servicio inyectado para operaciones con usuarios
     @Autowired
     private UsuarioServicio usuarioServicio;
 

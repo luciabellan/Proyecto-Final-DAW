@@ -10,23 +10,26 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api")
+@RestController //controlador REST
+@RequestMapping("/api")  // Ruta base
 @CrossOrigin(origins = "https://proyecto-final-daw-production-5980.up.railway.app") 
 public class CuentoDisponibleControlador {
 
+    // Inyección del servicio que maneja la lógica de negocio
     @Autowired
     private CuentoDisponibleServicio cuentoDisponibleServicio;
 
-    // Obtener todos los cuentos disponibles
+    // Endpoint para obtener todos los cuentos disponibles
     @GetMapping("/cuentos-disponibles")
         @PreAuthorize("hasRole('USER')") // solo usuarios autenticados pueden acceder
 
    public ResponseEntity<?> getCuentosDisponibles() {
         try {
+            // Obtiene la lista de cuentos a través del servicio
             List<CuentoDisponible> cuentos = cuentoDisponibleServicio.obtenerTodos();
             System.out.println("Cuentos encontrados: " + cuentos.size()); // Debug
-            return ResponseEntity.ok(cuentos);
+            return ResponseEntity.ok(cuentos); //200 ok
+
         } catch (Exception e) {
             System.err.println("Error al obtener cuentos: " + e.getMessage());
             e.printStackTrace(); // Esto mostrará el stack trace en los logs del servidor
