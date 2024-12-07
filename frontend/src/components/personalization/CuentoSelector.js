@@ -4,27 +4,20 @@ import './CuentoSelector.scss';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
-
 const CuentoSelector = ({ formData, onChange }) => {
-  
   const [cuentosDisponibles, setCuentosDisponibles] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  
 
   useEffect(() => {
     const fetchCuentos = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get( `${apiUrl}/api/cuentos-disponibles`, {
+        const response = await axios.get(`${apiUrl}/api/cuentos-disponibles`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-
         setCuentosDisponibles(response.data);
-
-       
       } catch (error) {
         console.error('Error al cargar los cuentos:', error);
       } finally {
@@ -37,9 +30,7 @@ const CuentoSelector = ({ formData, onChange }) => {
 
   const handleCuentoChange = (e) => {
     const selectedCuentoId = e.target.value;
-    
-    
-    onChange({ 
+    onChange({
       cuento_id: selectedCuentoId
     });
   };
@@ -52,14 +43,10 @@ const CuentoSelector = ({ formData, onChange }) => {
       return require('../../assets/images/default-book.png');
     }
   };
- 
+
   const cuentoSeleccionado = cuentosDisponibles.find(
     cuento => cuento.id === parseInt(formData.cuento_id)
   );
-
-
-  console.log("Cuento seleccionado:", cuentoSeleccionado); // Añade este log
-  console.log("Ruta de imagen:", cuentoSeleccionado?.imagenUrl); // Y este
 
   if (loading) {
     return <div className="loading">Cargando cuentos disponibles...</div>;
@@ -68,7 +55,9 @@ const CuentoSelector = ({ formData, onChange }) => {
   return (
     <div className="cuento-selector">
       <div className="form-group">
-        <label htmlFor="cuento_id">Selecciona el cuento que quieres personalizar:</label>
+        <label htmlFor="cuento_id">
+          Selecciona el cuento que quieres personalizar:
+        </label>
         <select
           id="cuento_id"
           name="cuento_id"
@@ -79,7 +68,7 @@ const CuentoSelector = ({ formData, onChange }) => {
           <option value="">Selecciona un cuento</option>
           {cuentosDisponibles.map((cuento) => (
             <option key={cuento.id} value={cuento.id}>
-              {cuento.titulo} 
+              {cuento.titulo}
             </option>
           ))}
         </select>
@@ -88,11 +77,13 @@ const CuentoSelector = ({ formData, onChange }) => {
       {cuentoSeleccionado && (
         <div className="cuento-preview">
           <div className="cuento-info">
-            <img 
-             src={getImageUrl(cuentoSeleccionado.imagenUrl)}
-             alt={cuentoSeleccionado.titulo}
-             className="cuento-imagen"
-            />
+            <div className="imagen-container">
+              <img
+                src={getImageUrl(cuentoSeleccionado.imagenUrl)}
+                alt={cuentoSeleccionado.titulo}
+                className="cuento-imagen"
+              />
+            </div>
             <div className="cuento-detalles">
               <h3>{cuentoSeleccionado.titulo}</h3>
               <p>{cuentoSeleccionado.descripcion}</p>
