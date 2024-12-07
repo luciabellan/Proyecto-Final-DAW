@@ -12,7 +12,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(@NonNull CorsRegistry registry) {
         registry.addMapping("/**") // Permitir todas las rutas
-                .allowedOrigins("https://proyecto-final-daw-production-5980.up.railway.app") // Origen permitido
+                .allowedOrigins("https://proyecto-final-daw-production-5980.up.railway.app", "http://localhost:3000") // Origen permitido
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Métodos permitidos
                 .allowedHeaders("*")
                 .allowCredentials(true); // Permitir credenciales (cookies, etc.)
