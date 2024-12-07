@@ -1,6 +1,6 @@
 import React from 'react';
 import './Pricing.scss'; // Importar los estilos
-import bookImage from '../../assets/images/cuento-agosto.svg'; // Asegúrate de tener esta imagen exportada
+import bookImage from '../../assets/images/cuento-agosto.png'; // Asegúrate de tener esta imagen exportada
 import { Link } from 'react-router-dom';
 function Pricing() {
   return (

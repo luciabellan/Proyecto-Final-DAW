@@ -1,6 +1,6 @@
 import React from 'react';
 import './BookOfTheMonth.scss';
-import bookImage from '../../assets/images/cuento-agosto.svg'; 
+import bookImage from '../../assets/images/cuento-agosto.png'; 
 
 function BookOfTheMonth() {
   return (

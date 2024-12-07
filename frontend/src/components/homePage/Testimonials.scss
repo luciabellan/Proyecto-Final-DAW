@@ -8,10 +8,7 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   
-    h2 {
-      @include heading-style(28px, $color-primary); // Usamos el mixin
-      margin-bottom: 20px;
-    }
+
   
     .carousel {
       position: relative;
@@ -36,14 +33,14 @@
   
         p {
           font-size: 18px;
-          color: $color-accent; // Texto lila pastel
+          color: $color-text; // Texto lila pastel
           margin-bottom: 10px;
-          font-family: $font-family-primary;
+          font-weight: bold;
         }
   
         span {
           font-size: 16px;
-          color: $color-warm; // Melocotón para el autor
+          color: $color-secondary; // Melocotón para el autor
           font-weight: bold;
         }
       }
