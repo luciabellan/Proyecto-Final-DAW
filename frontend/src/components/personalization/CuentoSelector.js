@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './CuentoSelector.css';
+import './CuentoSelector.scss';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 

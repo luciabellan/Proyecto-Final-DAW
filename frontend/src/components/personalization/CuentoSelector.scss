@@ -1,0 +1,96 @@
+@import '../../styles/variables';
+@import '../../styles/components';
+
+.cuento-selector {
+  background-color: #ffffff;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.25rem;
+
+  .form-group {
+    margin-bottom: 1.25rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #333;
+    }
+
+    select {
+      width: 100%;
+      padding: 0.625rem;
+      border: 1px solid #ddd;
+      border-radius: 0.25rem;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: #4CAF50;
+        box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+      }
+    }
+  }
+
+  .cuento-preview {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 0.25rem;
+    
+    .cuento-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      @media (min-width: 768px) {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+
+      .imagen-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        
+        @media (min-width: 768px) {
+          width: 33.333%;
+        }
+
+        .cuento-imagen {
+          max-width: 100%;
+          height: auto;
+          max-height: 16rem; // 256px
+          object-fit: contain;
+          border-radius: 0.5rem;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+      }
+
+      .cuento-detalles {
+        flex: 1;
+        
+        h3 {
+          font-size: 1.25rem;
+          font-weight: 600;
+          color: #333;
+          margin-bottom: 0.75rem;
+        }
+
+        p {
+          color: #666;
+          line-height: 1.5;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+
+.loading {
+  text-align: center;
+  padding: 1rem;
+  color: #666;
+}
