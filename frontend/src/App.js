@@ -1,13 +1,13 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; //Biblioteca para manejar rutas en React.
 import HomePage from './pages/HomePage';  // Tu componente de la página de inicio
 import LoginPage from './pages/LoginPage';
 import PersonalizationPage from './pages/PersonalizationPage';
 import ProfilePage from './pages/ProfilePage';
 import RegisterPage from './pages/RegisterPage';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles/main.scss';
-import EditUser from './components/profile/EditUser';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Importación de estilos de Bootstrap
+import './styles/main.scss'; // Estilos globales personalizados
+import EditUser from './components/profile/EditUser'; // Componente para edición de usuarios
 
 function App() {
   return (
