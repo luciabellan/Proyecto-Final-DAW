@@ -5,12 +5,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity
+@Entity // Entidad JPA que representa un personaje predefinido en el sistema
 public class PersonajePredefinido {
+    // Identificador único del personaje
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
+    // Atributos  del personaje
     private String nombre;
     private String tipo; // Por ejemplo, "niño", "niña"
     private String colorPiel;

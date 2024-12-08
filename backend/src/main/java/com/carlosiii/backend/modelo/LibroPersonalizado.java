@@ -7,36 +7,46 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name = "libro_personalizado")
+@Entity // Entidad JPA que representa un libro personalizado por un usuario
+@Table(name = "libro_personalizado") // Nombre de la tabla en la base de datos
 public class LibroPersonalizado {
     
+    // Identificador único del libro personalizado
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // Fecha y hora de creación del libro
     @Column(name = "fecha_creacion")
     private LocalDateTime fechaCreacion;
 
+     // Título del libro personalizado
     private String titulo;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "cuento_id")
+    // Relación muchos a uno con CuentoDisponible (cuento base)
+    @ManyToOne(fetch = FetchType.EAGER) // Carga inmediata de los datos del cuento
+    @JoinColumn(name = "cuento_id") // Columna que establece la relación
     private CuentoDisponible cuento;
 
+    // Relación muchos a uno con Usuario (creador del libro)
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    // Relación uno a muchos con PersonajeCreado
+    @JsonManagedReference // Manejo de serialización JSON para evitar ciclos infinitos
+    @OneToMany(mappedBy = "libro",  // Campo en PersonajeCreado que mapea esta relación
+    cascade = CascadeType.ALL, // Propaga operaciones CRUD a los personajes
+    fetch = FetchType.EAGER, // Carga inmediata de los personajes
+    orphanRemoval = true) // Elimina personajes huérfanos
+
     private List<PersonajeCreado> personajesCreados = new ArrayList<>();
 
-    // Constructor vacío
+    // Constructor vacío requerido por JPA
     public LibroPersonalizado() {
     }
 
-    // Getters y Setters
+    // Getters y Setters para todos los atributos
     public Long getId() {
         return id;
     }

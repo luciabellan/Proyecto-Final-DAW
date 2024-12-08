@@ -5,8 +5,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity
+@Entity // Entidad JPA que representa un cuento disponible en la base de datos
 public class CuentoDisponible {
+    // Identificador único del cuento, se genera automáticamente
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,18 +16,18 @@ public class CuentoDisponible {
     private String imagen_url;
     private String titulo;
 
-    // Constructor vacío (requerido por JPA)
+    // Constructor vacío (requerido por JPA  para crear instancias)
     public CuentoDisponible() {
     }
 
-    // Constructor con todos los campos
+    // Constructor con parámetros para crear un cuento con todos sus datos
     public CuentoDisponible(String titulo, String descripcion, String imagen_url) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.imagen_url = imagen_url;
     }
 
-    // Getters y setters
+    // Métodos getter y setter para acceder y modificar los atributos
     public Long getId() {
         return id;
     }

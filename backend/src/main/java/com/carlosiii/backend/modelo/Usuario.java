@@ -10,11 +10,14 @@ import jakarta.persistence.Id;
 import java.util.Collection;
 import java.util.Collections;
 
-@Entity
+@Entity // Entidad JPA que representa un usuario del sistema e implementa UserDetails para Spring Security
 public class Usuario implements UserDetails {
+
+    // Identificador único del usuario
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    // Datos del usuario
     private String nombre;
     private String apellidos;
     private String email;
@@ -94,35 +97,36 @@ public class Usuario implements UserDetails {
         this.codigoPostal = codigoPostal;
     }
 
-    // Métodos requeridos por UserDetails
+     // Implementación de métodos de UserDetails para Spring Security
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // Puedes configurar roles en función de tu lógica de negocio.
+        // Retorna lista vacía de roles/autoridades
         return Collections.emptyList();
     }
 
     @Override
     public String getUsername() {
+         // Usa el email como nombre de usuario
         return this.email;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return true; // Cuenta nunca expira
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return true; // Cuenta nunca se bloquea
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return true; // Credenciales nunca expiran
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return true; // Cuenta siempre activa
     }
 }
