@@ -1,6 +1,7 @@
 import React from "react";
 import "./Footer.scss";
 import logo from "../../assets/logo/cartagenita_stories_logo.svg";
+import CCBYSA from "../../assets/logo/CC_BY-SA_icon.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,
@@ -16,19 +17,14 @@ const Footer = () => {
           <a href="/">
             <img src={logo} alt="Logo" className="footer__logo" />
           </a>
-
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+            <img src={CCBYSA} alt="ccbysa" className="footer__logo" />
+          </a>
           <p>
-            <span property="dct:title">Cartagenita Stories</span> by
-            <span property="cc:attributionName">Lucía Martínez Abellán</span> is
-            licensed under
-            <a
-              href="https://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1"
-              target="_blank"
-              rel="license noopener noreferrer"
-              style={{ display: "inline-block" }}
-            >
-              Creative Commons Attribution-ShareAlike 4.0 International
-            </a>
+            Cartagenita Stories © 2024 by Lucía Martínez Abellán is licensed
+            under Creative Commons Attribution-ShareAlike 4.0 International. To
+            view a copy of this license, visit
+            https://creativecommons.org/licenses/by-sa/4.0/
           </p>
         </div>
 
