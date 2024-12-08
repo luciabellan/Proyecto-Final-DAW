@@ -218,20 +218,3 @@
     border: 1px solid var(--success-color);
   }
   
-  /* Estilos de accesibilidad */
-  @media (prefers-reduced-motion: reduce) {
-    .personalization-section,
-    .personalization-button {
-      transition: none;
-    }
-  }
-  
-  /* Soporte para modo oscuro */
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --background-color: #1a1a1a;
-      --text-color: #ffffff;
-      --border-color: #404040;
-      --white: #2d2d2d;
-    }
-  }
