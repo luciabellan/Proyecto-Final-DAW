@@ -17,15 +17,28 @@ const Footer = () => {
           <a href="/">
             <img src={logo} alt="Logo" className="footer__logo" />
           </a>
-          <a href="https://creativecommons.org/licenses/by-sa/4.0/">
-            <img src={CCBYSA} alt="ccbysa" className="creative-commons-img" />
-          </a>
-          <p className="creative-commons">
-            Cartagenita Stories © 2024 by Lucía Martínez Abellán is licensed
-            under Creative Commons Attribution-ShareAlike 4.0 International. To
-            view a copy of this license, visit
-            https://creativecommons.org/licenses/by-sa/4.0/
-          </p>
+          <div className="creative-commons-container">
+            <a
+              href="https://creativecommons.org/licenses/by-sa/4.0/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={CCBYSA} alt="ccbysa" className="creative-commons-img" />
+            </a>
+            <p className="creative-commons-text">
+              Cartagenita Stories © 2024 by Lucía Martínez Abellán is licensed
+              under Creative Commons Attribution-ShareAlike 4.0 International.
+              To view a copy of this license, visit
+              <a
+                href="https://creativecommons.org/licenses/by-sa/4.0/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Creative Commons Attribution-ShareAlike 4.0
+              </a>
+              .
+            </p>
+          </div>
         </div>
 
         <div className="footer__section">
@@ -43,9 +56,7 @@ const Footer = () => {
         <div className="footer__section">
           <h4 id="contacto">Contacto</h4>
           <ul>
-          <li>
-              Email: support@cartagenitastories.es
-            </li>
+            <li>Email: support@cartagenitastories.es</li>
             <li>
               <a href="/docs/condiciones.pdf">Términos y condiciones</a>
             </li>

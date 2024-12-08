@@ -47,6 +47,32 @@
         max-width: 150px;
         margin-bottom: 1rem;
       }
+      .creative-commons-container {
+        margin-top: 1rem;
+        text-align: center;
+  
+        .creative-commons-img {
+          height: 22px;
+          margin: 0.5rem auto;
+          display: block; // Imagen centrada bajo el logo
+        }
+  
+        .creative-commons-text {
+          font-size: 0.8rem; // Reducir tamaño de fuente
+          color: $color-text-light; // Ajusta el color según tu diseño
+          line-height: 1.2; // Espaciado entre líneas para legibilidad
+          margin-top: 0.5rem;
+        }
+  
+        a {
+          color: $color-text-light;
+          text-decoration: underline;
+  
+          &:hover {
+            color: $color-background;
+          }
+        }
+      }
     }
   
     &__socials {
@@ -69,19 +95,7 @@
       }
     }
 
-    .creative-commons{
-        display:inline-block;
-        height:22px!important;
-        margin-left:3px;
-        vertical-align:text-bottom;
-
-    }
-
-    .creative-commons-img{
-      height:22px!important;
-      margin-left:3px;
-      vertical-align:text-bottom;
-    }
+    
 
   }
   
