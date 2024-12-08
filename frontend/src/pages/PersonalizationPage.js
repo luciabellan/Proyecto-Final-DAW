@@ -5,7 +5,10 @@ import NumeroPersonajes from "../components/personalization/NumeroPersonajes";
 import PersonajeInput from "../components/personalization/PersonajeInput";
 import axios from "axios";
 import ResumenPedido from "../components/personalization/ResumenPedido";
+import  './PersonalizationPage.css';
 const apiUrl = process.env.REACT_APP_API_URL;
+
+
 
 
 
