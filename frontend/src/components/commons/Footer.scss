@@ -59,13 +59,13 @@
   
         .creative-commons-text {
           font-size: 0.8rem; // Reducir tamaño de fuente
-          color: $color-text-light; // Ajusta el color según tu diseño
+          color: $color-text; // Ajusta el color según tu diseño
           line-height: 1.2; // Espaciado entre líneas para legibilidad
           margin-top: 0.5rem;
         }
   
         a {
-          color: $color-text-light;
+          color: $color-text;
           text-decoration: underline;
   
           &:hover {
