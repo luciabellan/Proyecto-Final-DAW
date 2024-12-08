@@ -2,7 +2,6 @@ import React from 'react';
 import Navbar from '../components/commons/Navbar';
 import BrandTitle from '../components/commons/BrandTitle';
 import Footer from '../components/commons/Footer';
-import './RegisterPage.css';
 import Register from '../components/auth/Register';
 
 
