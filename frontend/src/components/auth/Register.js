@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react'; // React y hooks para manejar estado
+import axios from 'axios'; // Biblioteca para realizar peticiones HTTP
+import { useNavigate } from 'react-router-dom'; // Hook para navegación programada
 import './Register.css'; // Asegúrate de tener estilos para el formulario
 
 
 
 const Register = () => {
+
+  // URL base de la API desde las variables de entorno
   const apiUrl = process.env.REACT_APP_API_URL;
+
+  // Estados para manejar los valores del formulario
   const [nombre, setNombre] = useState('');
   const [apellidos, setApellidos] = useState('');
   const [email, setEmail] = useState('');
@@ -14,13 +18,16 @@ const Register = () => {
   const [direccion, setDireccion] = useState('');
   const [codigoPostal, setCodigoPostal] = useState('');
   const [error, setError] = useState('');
+
+  // Hook para redirigir a otras rutas
   const navigate = useNavigate();
 
+  // Función para manejar el registro
   const handleRegister = async (e) => {
     e.preventDefault(); // Evitar el comportamiento predeterminado del formulario
 
     try {
-      // Hacer la solicitud de registro al backend
+      // Enviar solicitud POST al backend con los datos del usuario
       await axios.post( `${apiUrl}/api/usuarios`, {
         nombre,
         apellidos,
@@ -29,9 +36,10 @@ const Register = () => {
         direccion,
         codigoPostal
       });
-      // Redirigir al login después de registrar al usuario
+      // Si el registro es exitoso, redirigir al login
       navigate('/login');
     } catch (error) {
+       // Manejo de errores: verificar si el correo ya está registrado
       if (error.response && error.response.status === 500) {
         setError('El correo electrónico ya está en uso.'); // Mensaje específico
     } else {
@@ -40,6 +48,7 @@ const Register = () => {
   }
   };
 
+  // Renderizado del formulario
   return (
     <div className="register-container">
       <h2>Registrarse</h2>

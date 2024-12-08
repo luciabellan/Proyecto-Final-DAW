@@ -1,45 +1,54 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react'; // React y hooks para manejar estado
+import axios from 'axios'; // Biblioteca para realizar peticiones HTTP
+import { useNavigate } from 'react-router-dom'; // Hook para navegación programada
 import './Login.scss';
 
 const Login = () => {
+
+  // URL base de la API obtenida desde variables de entorno
   const apiUrl = process.env.REACT_APP_API_URL;
+
+   // Estados para manejar inputs, errores, y la lógica de carga
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  // Hook para navegar entre rutas
   const history = useNavigate();
 
+
+  // Función para manejar el proceso de login
   const handleLogin = async () => {
-    setLoading(true);
-    setError('');
+    setLoading(true); // Activamos el estado de carga
+    setError(''); // Limpiamos errores previos
 
     try {
+      // Validación simple: verificar que email y contraseña no estén vacíos
       if (!email || !password) {
         setError('Por favor, introduce email y contraseña.');
         return;
       }
 
-      // 1. Primer paso: Login normal
+      // 1. Enviar solicitud de login al backend
       const loginResponse = await axios.post(`${apiUrl}/api/login`, { email, password });
-      const token = loginResponse.data;
+      const token = loginResponse.data;  // Obtener el token del usuario
       
-      // 2. Segundo paso: Verificar si el usuario existe
+      // 2. Verificar si el usuario existe usando el token recibido
       try {
         await axios.get(`${apiUrl}/api/perfil`, {
           headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token}` // Token en el header para autenticación
           }
         });
 
-        // Si llegamos aquí, el usuario existe y podemos proceder
-        localStorage.setItem('token', token);
-        history('/profile');
+        // Si no hay errores, almacenamos el token y navegamos al perfil
+        localStorage.setItem('token', token); // Guardamos el token localmente
+        history('/profile');// Navegamos a la página del perfil
       } catch (userError) {
-        // Si hay error 404 o 500, significa que el usuario no existe
+         // Si el usuario no existe (404) o hay errores en el servidor (500)
         if (userError.response && (userError.response.status === 404 || userError.response.status === 500)) {
-          // Limpiamos el token si existe
+          // Eliminamos cualquier token almacenado
           localStorage.removeItem('token');
           throw new Error('Este usuario ha sido eliminado y no puede acceder');
         }
@@ -61,15 +70,17 @@ const Login = () => {
       // Nos aseguramos de limpiar cualquier token que pudiera haber quedado
       localStorage.removeItem('token');
     } finally {
-      setLoading(false);
+      setLoading(false);  // Finalizamos el estado de carga
     }
   };
 
+   // Manejador del envío del formulario
   const handleSubmit = (event) => {
-    event.preventDefault();
-    handleLogin();
+    event.preventDefault(); // Prevenimos el comportamiento predeterminado del formulario
+    handleLogin(); // Llamamos al proceso de login
   };
 
+  // Renderizado del componente
   return (
     <div className="login-page">
       <div className="login-image-section">
