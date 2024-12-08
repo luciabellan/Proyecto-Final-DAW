@@ -43,6 +43,9 @@ const Footer = () => {
         <div className="footer__section">
           <h4 id="contacto">Contacto</h4>
           <ul>
+          <li>
+              Email: support@cartagenitastories.es
+            </li>
             <li>
               <a href="/docs/condiciones.pdf">Términos y condiciones</a>
             </li>
