@@ -28,7 +28,7 @@ const Footer = () => {
             <p className="creative-commons-text">
               Cartagenita Stories © 2024 by Lucía Martínez Abellán is licensed
               under Creative Commons Attribution-ShareAlike 4.0 International.
-              To view a copy of this license, visit
+              To view a copy of this license, visit 
               <a
                 href="https://creativecommons.org/licenses/by-sa/4.0/"
                 target="_blank"
