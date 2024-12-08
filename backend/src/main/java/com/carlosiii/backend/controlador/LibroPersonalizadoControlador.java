@@ -32,22 +32,25 @@ public class LibroPersonalizadoControlador {
     // Crear nuevo libro personalizado
     @PostMapping("/libros-personalizados")
     public ResponseEntity<?> crearLibroPersonalizado(
-            @RequestBody LibroPersonalizadoDTO libroDTO,
-            Authentication authentication) {
+            @RequestBody LibroPersonalizadoDTO libroDTO, //recibe los datos del libro
+            Authentication authentication) {// Objeto que contiene la información del usuario autenticado
         try {
+            // Obtiene el email del usuario autenticado
             String userEmail = authentication.getName();
             System.out.println("Email del usuario: " + userEmail);
             System.out.println("Datos recibidos: " + libroDTO);
 
+            // Busca el usuario en la base de datos
             Usuario usuario = usuarioServicio.buscarPorEmail(userEmail);
             if (usuario == null) {
                 return ResponseEntity.badRequest()
                         .body("Usuario no encontrado");
             }
 
-            // Convertir DTO a entidades
+            // Convierte la lista de personajes del DTO a entidades
             List<PersonajeCreado> personajes = libroDTO.getPersonajes().stream()
                     .map(personajeDTO -> {
+                         // Crea nuevo personaje
                         PersonajeCreado personaje = new PersonajeCreado();
                         personaje.setPersonajeNombre(personajeDTO.getNombre());
 
@@ -60,6 +63,7 @@ public class LibroPersonalizadoControlador {
                     })
                     .collect(Collectors.toList());
 
+            // Crea el libro usando el servicio
             LibroPersonalizado libro = libroPersonalizadoServicio.crearLibro(
                     usuario.getId(),
                     libroDTO.getCuentoId(),
@@ -71,35 +75,36 @@ public class LibroPersonalizadoControlador {
             return ResponseEntity.badRequest()
                     .body("Error al crear el libro personalizado: " + e.getMessage());
         }
+    
     }
 
-    
 
-
+    // Endpoint para obtener todos los libros de un usuario
     @GetMapping("/libros-personalizados")
     public ResponseEntity<?> obtenerLibrosUsuario(Authentication authentication) {
         try {
-            // Obtener el email del token
+            // Obtiene el email del usuario del token de autenticación
             String userEmail = authentication.getName();
             
-            // Obtener el usuario
+            // Busca el usuario en la base de datos
             Usuario usuario = usuarioServicio.buscarPorEmail(userEmail);
             if (usuario == null) {
                 return ResponseEntity.badRequest()
                     .body("Usuario no encontrado");
             }
 
-            // Obtener los libros
+            // Obtiene los libros del usuario
             List<LibroPersonalizado> libros = 
                 libroPersonalizadoServicio.obtenerLibrosDetalladosPorUsuario(usuario.getId());
 
-             // Convertir las entidades a DTOs
+            // Convierte las entidades a DTOs para la respuesta
             List<LibroPersonalizadoResponseDTO> librosDTO = libros.stream()
                 .map(LibroPersonalizadoResponseDTO::fromEntity)
                 .collect(Collectors.toList());
 
             System.out.println("Número de libros encontrados: " + librosDTO.size()); // Log para debug
             
+             // Devuelve la lista de libros
             return ResponseEntity.ok(librosDTO);
 
         } catch (Exception e) {
@@ -110,19 +115,19 @@ public class LibroPersonalizadoControlador {
     }
 
 
-    // Obtener un libro específico
+    // Endpoint para obtener un libro específico por ID
     @GetMapping("/libros-personalizados/{id}")
     public ResponseEntity<?> obtenerLibro(
-            @PathVariable Long id,
+            @PathVariable Long id, // ID del libro a obtener
             Authentication authentication) {
         try {
             Long usuarioId = Long.parseLong(authentication.getName());
 
-            // Verificar que el libro pertenece al usuario
+            // Verifica que el usuario tenga permiso para ver este libro
             if (!libroPersonalizadoServicio.perteneceAUsuario(id, usuarioId)) {
                 return ResponseEntity.status(403).body("No tienes permiso para ver este libro");
             }
-
+            // Obtiene y retorna el libro
             LibroPersonalizado libro = libroPersonalizadoServicio.obtenerLibro(id);
             return ResponseEntity.ok(libro);
         } catch (Exception e) {

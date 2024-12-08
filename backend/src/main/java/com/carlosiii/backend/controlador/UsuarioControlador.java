@@ -8,21 +8,22 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@RestController
-@RequestMapping("/api")
-@CrossOrigin(origins = "https://proyecto-final-daw-production-5980.up.railway.app", allowCredentials = "true")
+@RestController // Controlador REST para manejar peticiones HTTP
+@RequestMapping("/api") // Ruta base para todos los endpoints
+@CrossOrigin(origins = "https://proyecto-final-daw-production-5980.up.railway.app", allowCredentials = "true") // Permite peticiones del frontend
 public class UsuarioControlador {
 
+    // Inyección del servicio que maneja la lógica de usuarios
     @Autowired
     private UsuarioServicio usuarioServicio;
 
-    // Obtener todos los usuarios
+    // Obtener lista de todos los usuarios
     @GetMapping
     public List<Usuario> obtenerUsuarios() {
         return usuarioServicio.obtenerTodos();
     }
 
-    // Obtener un usuario por ID
+    // Obtener un usuario específico por su ID
     @GetMapping("/{id}")
     public Usuario obtenerUsuarioPorId(@PathVariable Long id) {
         return usuarioServicio.obtenerPorId(id).orElse(null);
@@ -47,12 +48,14 @@ public class UsuarioControlador {
         usuarioServicio.eliminarUsuario( id);
     }
 
+    // Obtener el perfil del usuario autenticado
     @GetMapping("/perfil")
     public ResponseEntity<Usuario> obtenerPerfil(Authentication authentication) {
+        // Obtiene el email del usuario autenticado
         String email = authentication.getName();
         Usuario usuario = usuarioServicio.buscarPorEmail(email);
         if (usuario != null) {
-            // Asegúrate de no enviar información sensible como la contraseña
+            // Por seguridad, elimina la contraseña antes de enviar
             usuario.setPassword(null);
             return ResponseEntity.ok(usuario);
         } else {
