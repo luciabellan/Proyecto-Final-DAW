@@ -18,9 +18,9 @@ const Footer = () => {
             <img src={logo} alt="Logo" className="footer__logo" />
           </a>
           <a href="https://creativecommons.org/licenses/by-sa/4.0/">
-            <img src={CCBYSA} alt="ccbysa" className="footer__logo" />
+            <img src={CCBYSA} alt="ccbysa" className="creative-commons-img" />
           </a>
-          <p>
+          <p className="creative-commons">
             Cartagenita Stories © 2024 by Lucía Martínez Abellán is licensed
             under Creative Commons Attribution-ShareAlike 4.0 International. To
             view a copy of this license, visit
