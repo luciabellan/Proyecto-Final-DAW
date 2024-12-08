@@ -16,10 +16,7 @@ const Footer = () => {
           <a href="/">
           <img  src={logo} alt="Logo" className="footer__logo" />
           </a>
-          
-          <p>&copy; 2024 Cartagenita Stories</p>
-          <p>Cartagenita Stories SL</p>
-          
+                    
           <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">
   <span property="dct:title">Cartagenita Stories</span> by
   <span property="cc:attributionName">Lucía Martínez Abellán</span> is licensed under
