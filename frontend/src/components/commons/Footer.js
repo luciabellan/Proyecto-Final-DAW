@@ -14,52 +14,22 @@ const Footer = () => {
       <div className="footer__container">
         <div className="footer__section footer__branding">
           <a href="/">
-          <img  src={logo} alt="Logo" className="footer__logo" />
+            <img src={logo} alt="Logo" className="footer__logo" />
           </a>
-                    
-          <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">
-  <span property="dct:title">Cartagenita Stories</span> by
-  <span property="cc:attributionName">Lucía Martínez Abellán</span> is licensed under
-  <a
-    href="https://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1"
-    target="_blank"
-    rel="license noopener noreferrer"
-    style={{ display: "inline-block" }}
-  >
-    Creative Commons Attribution-ShareAlike 4.0 International
-    <img
-      style={{
-        height: "22px!important",
-        marginLeft: "3px",
-        verticalAlign: "text-bottom",
-      }}
-      src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"
-      alt=""
-    />
-    <img
-      style={{
-        height: "22px!important",
-        marginLeft: "3px",
-        verticalAlign: "text-bottom",
-      }}
-      src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"
-      alt=""
-    />
-    <img
-      style={{
-        height: "22px!important",
-        marginLeft: "3px",
-        verticalAlign: "text-bottom",
-      }}
-      src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"
-      alt=""
-    />
-  </a>
-</p>
 
-
-
-
+          <p>
+            <span property="dct:title">Cartagenita Stories</span> by
+            <span property="cc:attributionName">Lucía Martínez Abellán</span> is
+            licensed under
+            <a
+              href="https://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1"
+              target="_blank"
+              rel="license noopener noreferrer"
+              style={{ display: "inline-block" }}
+            >
+              Creative Commons Attribution-ShareAlike 4.0 International
+            </a>
+          </p>
         </div>
 
         <div className="footer__section">
@@ -77,27 +47,19 @@ const Footer = () => {
         <div className="footer__section">
           <h4 id="contacto">Contacto</h4>
           <ul>
-    <li>
-      <a href="/docs/condiciones.pdf">
-        Términos y condiciones
-      </a>
-    </li>
-    <li>
-      <a href="/docs/privacidad.pdf">
-        Política de privacidad
-      </a>
-    </li>
-    <li>
-      <a href="/docs/cookies.pdf">
-        Política de cookies
-      </a>
-    </li>
-    <li>
-      <a href="/docs/devoluciones.pdf">
-        Política de devoluciones
-      </a>
-    </li>
-  </ul>
+            <li>
+              <a href="/docs/condiciones.pdf">Términos y condiciones</a>
+            </li>
+            <li>
+              <a href="/docs/privacidad.pdf">Política de privacidad</a>
+            </li>
+            <li>
+              <a href="/docs/cookies.pdf">Política de cookies</a>
+            </li>
+            <li>
+              <a href="/docs/devoluciones.pdf">Política de devoluciones</a>
+            </li>
+          </ul>
         </div>
 
         <div className="footer__section footer__socials">
@@ -110,15 +72,10 @@ const Footer = () => {
             >
               <FontAwesomeIcon icon={faFacebook} />
             </a>
-            <a
-              href="https://instagram.com"
-            
-            >
+            <a href="https://instagram.com">
               <FontAwesomeIcon icon={faInstagram} />
             </a>
-            <a
-              href="https://twitter.com"
-            >
+            <a href="https://twitter.com">
               <FontAwesomeIcon icon={faTwitter} />
             </a>
           </div>
