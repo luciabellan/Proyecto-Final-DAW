@@ -6,24 +6,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+// Servicio que maneja la lógica de negocio para los personajes predefinidos del sistema
 @Service
 public class PersonajePredefinidoServicio {
+
+    // Inyección del repositorio para acceder a la base de datos
     @Autowired
     private PersonajePredefinidoRepository personajePredefinidoRepository;
 
-    // Método para obtener todos los personajes predefinidos
+    // Obtiene la lista completa de personajes predefinidos disponibles
     public List<PersonajePredefinido> obtenerTodos() {
         return personajePredefinidoRepository.findAll();
     }
 
 
-    // Nuevo método para obtener por ID
+    // Busca y retorna un personaje predefinido por su ID
+   // Si no existe, retorna null
     public PersonajePredefinido obtenerPorId(Long id) {
         return personajePredefinidoRepository.findById(id).orElse(null);
     }
 
-    // Verificar si un personaje es del tipo especificado
+    // Verifica si un personaje corresponde al mes actual
+   // Compara la descripción con el formato "mes año"
     public boolean esCuentoMesActual(String descripcion) {
         // Obtener mes y año actual en formato "mes año" (ej: "agosto 2024")
         java.time.LocalDate fecha = java.time.LocalDate.now();
@@ -31,7 +35,7 @@ public class PersonajePredefinidoServicio {
         String anoActual = String.valueOf(fecha.getYear());
         String mesAnoActual = mesActual + " " + anoActual;
         
-        // Comparar con la descripción del cuento
+        // Compara ignorando mayúsculas/minúsculas
         return descripcion.toLowerCase().equals(mesAnoActual);
     }
 

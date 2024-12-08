@@ -15,9 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
+// Servicio que maneja la lógica de negocio para libros personalizados
 @Service
 public class LibroPersonalizadoServicio {
 
+    // Inyección de dependencias necesarias
     @Autowired
     private LibroPersonalizadoRepository libroPersonalizadoRepository;
 
@@ -38,21 +40,22 @@ public class LibroPersonalizadoServicio {
         return libroPersonalizadoRepository.findByUsuarioId(usuarioId);
     }
 
+    // Obtiene los libros ordenados por fecha de creación descendente
     public List<LibroPersonalizado> obtenerLibrosDetalladosPorUsuario(Long usuarioId) {
         return libroPersonalizadoRepository.findByUsuarioIdOrderByFechaCreacionDesc(usuarioId);
     }
 
-    // Crear un nuevo libro personalizado
-    @Transactional
+    // Crea un nuevo libro personalizado con sus personajes
+    @Transactional // Asegura la integridad de la transacción
     public LibroPersonalizado crearLibro(Long usuarioId, Long cuentoId, List<PersonajeCreado> personajes) {
-        // Obtener usuario y cuento
+        // Verifica y obtiene el usuario y cuento
         Usuario usuario = usuarioServicio.obtenerPorId(usuarioId)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-        
-        CuentoDisponible cuento = cuentoDisponibleServicio.  obtenerPorId(cuentoId)
+
+        CuentoDisponible cuento = cuentoDisponibleServicio.obtenerPorId(cuentoId)
                 .orElseThrow(() -> new RuntimeException("Cuento no encontrado"));
 
-        // Crear el libro
+        // Crea y configura el nuevo libro
         LibroPersonalizado libro = new LibroPersonalizado();
         libro.setUsuario(usuario);
         libro.setCuento(cuento);
@@ -62,33 +65,33 @@ public class LibroPersonalizadoServicio {
         // Guardar el libro
         libro = libroPersonalizadoRepository.save(libro);
 
-        // Asociar los personajes al libro
-    for (PersonajeCreado personaje : personajes) {
-        // Establecer la relación con el libro
-        personaje.setLibro(libro);
-        
-        // Buscar y establecer el personaje predefinido directamente
-        // Aquí asumimos que el personajeId viene en el DTO
-        Long personajeId = personaje.getPersonaje().getId();
-        PersonajePredefinido personajePred = personajePredefinidoServicio.obtenerPorId(personajeId);
-        if (personajePred == null) {
-            throw new RuntimeException("Personaje predefinido no encontrado");
+        // Procesa y guarda cada personaje del libro
+        for (PersonajeCreado personaje : personajes) {
+            // Establecer la relación con el libro
+            personaje.setLibro(libro);
+
+            // Buscar y establecer el personaje predefinido directamente
+            // Aquí asumimos que el personajeId viene en el DTO
+            Long personajeId = personaje.getPersonaje().getId();
+            PersonajePredefinido personajePred = personajePredefinidoServicio.obtenerPorId(personajeId);
+            if (personajePred == null) {
+                throw new RuntimeException("Personaje predefinido no encontrado");
+            }
+            personaje.setPersonaje(personajePred);
+
+            personajeCreadoRepository.save(personaje);
         }
-        personaje.setPersonaje(personajePred);
-        
-        personajeCreadoRepository.save(personaje);
-    }
 
         return libro;
     }
 
-    // Obtener un libro específico
+    // Obtener un libro específico por su ID
     public LibroPersonalizado obtenerLibro(Long id) {
         return libroPersonalizadoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Libro no encontrado"));
     }
 
-    // Verificar si un libro pertenece a un usuario
+    // Verifica si un libro pertenece a un usuario específico
     public boolean perteneceAUsuario(Long libroId, Long usuarioId) {
         LibroPersonalizado libro = obtenerLibro(libroId);
         return libro.getUsuario().getId().equals(usuarioId);

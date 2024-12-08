@@ -17,8 +17,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+// Servicio que maneja la lógica de negocio para usuarios e implementa UserDetailsService para autenticación
 @Service
-public class UsuarioServicio implements UserDetailsService{
+public class UsuarioServicio implements UserDetailsService {
+
+    // Inyección de dependencias
     @Autowired
     private UsuarioRepository usuarioRepository;
 
@@ -28,12 +31,13 @@ public class UsuarioServicio implements UserDetailsService{
     @Autowired
     private PersonajeCreadoRepository personajeCreadoRepository;
 
+    // Inyección del codificador de contraseñas
     private final PasswordEncoder passwordEncoder;
 
-    
     public UsuarioServicio(@Lazy PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
     }
+
     // Método para obtener todos los usuarios
     public List<Usuario> obtenerTodos() {
         return usuarioRepository.findAll();
@@ -43,7 +47,7 @@ public class UsuarioServicio implements UserDetailsService{
         return usuarioRepository.findByEmail(nombre);
     }
 
-    // Método para guardar un usuario
+    // Guarda un nuevo usuario, encriptando su contraseña
     public Usuario guardarUsuario(Usuario usuario) {
         if (usuarioRepository.existsByEmail(usuario.getEmail())) {
             throw new RuntimeException("El correo electrónico ya está en uso");
@@ -57,12 +61,13 @@ public class UsuarioServicio implements UserDetailsService{
         return usuarioRepository.findById(id);
     }
 
-    // Método para eliminar un usuario por ID
+    // Elimina un usuario y todos sus datos relacionados
     @Transactional
     public void eliminarUsuario(Long id) {
-        Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
-        // Eliminar los libros personalizados del usuario
+        // Elimina los libros y personajes del usuario
         List<LibroPersonalizado> libros = libroPersonalizadoRepository.findByUsuarioId(id);
         for (LibroPersonalizado libro : libros) {
             // Eliminar los personajes asociados a cada libro
@@ -75,56 +80,55 @@ public class UsuarioServicio implements UserDetailsService{
     }
 
     public boolean validarPassword(String passwordIngresada, String passwordGuardada) {
-        // Aquí podrías agregar lógica para encriptación o simplemente comparar las contraseñas
+        // Aquí podrías agregar lógica para encriptación o simplemente comparar las
+        // contraseñas
         return passwordIngresada.equals(passwordGuardada);
     }
-    
+
     public Usuario buscarPorEmail(String email) {
         return usuarioRepository.findByEmail(email);
     }
 
- @Override
+    // Implementación de UserDetailsService para autenticación
+    @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Usuario usuario = usuarioRepository.findByEmail(email)
-            ;
+        Usuario usuario = usuarioRepository.findByEmail(email);
         return usuario;
     }
 
+    // Método para actualizar un usuario
+    public Usuario actualizarUsuario(Long id, Usuario usuarioActualizado) {
+        // Buscar el usuario por ID en la base de datos
+        Usuario usuarioExistente = usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
-// Método para actualizar un usuario
-public Usuario actualizarUsuario(Long id, Usuario usuarioActualizado) {
-    // Buscar el usuario por ID en la base de datos
-    Usuario usuarioExistente = usuarioRepository.findById(id)
-        .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-
-    // Actualizar solo los campos necesarios
-    if (usuarioActualizado.getNombre() != null && !usuarioActualizado.getNombre().isEmpty()) {
-        usuarioExistente.setNombre(usuarioActualizado.getNombre());
-    }
-    if (usuarioActualizado.getEmail() != null && !usuarioActualizado.getEmail().isEmpty()) {
-        if (!usuarioExistente.getEmail().equals(usuarioActualizado.getEmail())) {
-            // Verificar que el nuevo email no esté en uso por otro usuario
-            if (usuarioRepository.existsByEmail(usuarioActualizado.getEmail())) {
-                throw new RuntimeException("El correo electrónico ya está en uso");
-            }
-            usuarioExistente.setEmail(usuarioActualizado.getEmail());
+        // Actualizar solo los campos necesarios
+        if (usuarioActualizado.getNombre() != null && !usuarioActualizado.getNombre().isEmpty()) {
+            usuarioExistente.setNombre(usuarioActualizado.getNombre());
         }
-    }
-    if (usuarioActualizado.getDireccion() != null && !usuarioActualizado.getDireccion().isEmpty()) {
-        usuarioExistente.setDireccion(usuarioActualizado.getDireccion());
-    }
-    if (usuarioActualizado.getCodigoPostal() != null && !usuarioActualizado.getCodigoPostal().isEmpty()) {
-        usuarioExistente.setCodigoPostal(usuarioActualizado.getCodigoPostal());
-    }
+        if (usuarioActualizado.getEmail() != null && !usuarioActualizado.getEmail().isEmpty()) {
+            if (!usuarioExistente.getEmail().equals(usuarioActualizado.getEmail())) {
+                // Verificar que el nuevo email no esté en uso por otro usuario
+                if (usuarioRepository.existsByEmail(usuarioActualizado.getEmail())) {
+                    throw new RuntimeException("El correo electrónico ya está en uso");
+                }
+                usuarioExistente.setEmail(usuarioActualizado.getEmail());
+            }
+        }
+        if (usuarioActualizado.getDireccion() != null && !usuarioActualizado.getDireccion().isEmpty()) {
+            usuarioExistente.setDireccion(usuarioActualizado.getDireccion());
+        }
+        if (usuarioActualizado.getCodigoPostal() != null && !usuarioActualizado.getCodigoPostal().isEmpty()) {
+            usuarioExistente.setCodigoPostal(usuarioActualizado.getCodigoPostal());
+        }
 
-    // Si se pasa una contraseña nueva, actualizarla
-    if (usuarioActualizado.getPassword() != null && !usuarioActualizado.getPassword().isEmpty()) {
-        usuarioExistente.setPassword(passwordEncoder.encode(usuarioActualizado.getPassword()));
+        // Si se pasa una contraseña nueva, actualizarla
+        if (usuarioActualizado.getPassword() != null && !usuarioActualizado.getPassword().isEmpty()) {
+            usuarioExistente.setPassword(passwordEncoder.encode(usuarioActualizado.getPassword()));
+        }
+
+        // Guardar y devolver el usuario actualizado
+        return usuarioRepository.save(usuarioExistente);
     }
-
-    // Guardar y devolver el usuario actualizado
-    return usuarioRepository.save(usuarioExistente);
-}
-
 
 }
