@@ -36,15 +36,17 @@ public class LibroPersonalizadoResponseDTO {
         }
     }
 
-    // Método para convertir de Entidad a DTO
+    // Método estático para convertir una entidad LibroPersonalizado a DTO
     public static LibroPersonalizadoResponseDTO fromEntity(LibroPersonalizado libro) {
         LibroPersonalizadoResponseDTO dto = new LibroPersonalizadoResponseDTO();
+        // Copia los datos básicos del libro
         dto.setId(libro.getId());
         dto.setTitulo(libro.getTitulo());
         dto.setFechaCreacion(libro.getFechaCreacion());
         dto.setCuentoTitulo(libro.getCuento().getTitulo());
         dto.setCuentoImagenUrl(libro.getCuento().getImagenUrl());
-        
+
+        // Convierte la lista de personajes a DTOs usando Stream API        
         List<PersonajeResponseDTO> personajesDTO = libro.getPersonajesCreados().stream()
             .map(p -> {
                 PersonajeResponseDTO pDTO = new PersonajeResponseDTO();

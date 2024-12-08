@@ -3,17 +3,21 @@ package com.carlosiii.backend.dto;
 
 import java.util.List;
 
+// Clase DTO para transferir datos de libros personalizados entre cliente y servidor
 public class LibroPersonalizadoDTO {
+
+    // ID del cuento base que se va a personalizar
     private Long cuentoId;
+    // Lista de personajes que se incluirán en el libro
     private List<PersonajeDTO> personajes;
 
-    // Clase interna para los datos del personaje
+     // Clase interna que define la estructura de datos para cada personaje
     public static class PersonajeDTO {
-        private Long personajeId;
-        private String nombre;
-        private String tipo;
+        private Long personajeId; // ID del personaje predefinido base
+        private String nombre;    // Nombre personalizado del personaje
+        private String tipo;      // Tipo de personaje (niño/niña)
 
-        // Getters y Setters
+        // Getters y Setters para acceder a los datos del personaje
         public Long getPersonajeId() {
             return personajeId;
         }
@@ -39,7 +43,7 @@ public class LibroPersonalizadoDTO {
         }
     }
 
-    // Getters y Setters para LibroPersonalizadoDTO
+    // Getters y Setters para acceder a los datos del libro
     public Long getCuentoId() {
         return cuentoId;
     }
